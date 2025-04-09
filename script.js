@@ -1,4 +1,4 @@
-import Tokenize from "./lexer.js";
+import { Tokenize } from './lexer.js'
 
 const inputScreen = document.getElementById('operations');
 const btnDiv = document.getElementById('buttons');
@@ -77,7 +77,9 @@ const calculate = () => {
 
     try {
 
-        console.log(Tokenize(inputScreen.innerText));
+        const tokenizer = new Tokenize(inputScreen.innerText);
+        const token = tokenizer.generateToken();
+        console.log(token);
         inputScreen.innerText = eval(inputScreen.innerText);
 
     } catch (error) {
