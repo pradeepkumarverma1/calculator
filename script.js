@@ -1,3 +1,5 @@
+import Tokenize from "./lexer.js";
+
 const inputScreen = document.getElementById('operations');
 const btnDiv = document.getElementById('buttons');
 const opBtns = document.querySelectorAll('.op-btn');
@@ -75,6 +77,7 @@ const calculate = () => {
 
     try {
 
+        console.log(Tokenize(inputScreen.innerText));
         inputScreen.innerText = eval(inputScreen.innerText);
 
     } catch (error) {
