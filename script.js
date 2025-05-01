@@ -1,4 +1,6 @@
+import { Eval } from './evaluator.js';
 import { Tokenize } from './lexer.js'
+import { Parser } from './parser.js';
 
 const inputScreen = document.getElementById('operations');
 const btnDiv = document.getElementById('buttons');
@@ -78,9 +80,15 @@ const calculate = () => {
     try {
 
         const tokenizer = new Tokenize(inputScreen.innerText);
-        const token = tokenizer.generateToken();
-        console.log(token);
-        inputScreen.innerText = eval(inputScreen.innerText);
+        const tokens = tokenizer.generateToken();
+        console.log(tokens);
+        const parser = new Parser(tokens);
+        const ast = parser.parseToken();
+        console.log(ast);
+        const e = new Eval(ast);
+        const result = e.solve();
+        console.log(result);
+        inputScreen.innerText = result;
 
     } catch (error) {
 
